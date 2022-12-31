@@ -1,0 +1,190 @@
+# Import all from tkinter
+# to this program
+from tkinter import *
+ 
+# Declare global variable
+window = None
+counter = 0
+ 
+# Define a function for 
+# starting the counter 
+def start() :
+ 
+    # we specify that we want to 
+    # use global counter variable
+    # using global keyword
+    global counter
+ 
+    # Create a label using Label() widget
+    # with foreground and background
+    # colours
+    counterLabel = Label(window, fg = 'red',
+                         bg = 'pink')
+ 
+ 
+    # Place this widget in grid at (2, 2)
+    # with internal x(horizontal) and y(vertical)
+    # extra space from the text written in label
+    # Also with x and y extra space from the
+    # given widget
+    counterLabel.grid(row = 2, column = 2,
+                    ipadx = "25", ipady = "25",
+                    padx = "25", pady = "25")    
+ 
+    # increment the counter by one
+    counter += 1
+ 
+    # set the text value in the label
+    # using config() method
+    counterLabel.config(text = str(counter))
+ 
+    # calling start function on every
+    # 1000 millisecond i.e. 1sec
+    # using after() method
+    counterLabel.after(1000, start)
+ 
+    # Get a text from statusfield 
+    # entry box using get() method
+    val = statusField.get()
+ 
+    # if value match with "Stop"
+    # then destroy this label
+    # ,delete the content
+    # of entry field and
+    # decrement the counter value by 1
+    if val == "Stop" :
+         
+        counterLabel.destroy()
+        statusField.delete(0,"end")
+        counter -= 1
+ 
+# Define a function for 
+# stoping the counter 
+def stop() :
+ 
+    # we specify that we want to 
+    # use global counter variable
+    # using global keyword
+    global counter
+ 
+    # Create a label using Label() widget
+    # with foreground, background
+    # colours and text value on the label
+    counterLabel = Label(window, text = str(counter),
+                   fg = 'red', bg = 'black')
+ 
+ 
+    # Place this widget in grid at (2, 2)
+    # along with specified padding
+    counterLabel.grid(row = 2, column = 2,
+                    ipadx = "25", ipady = "25",
+                    padx = "25", pady = "25")
+ 
+    # insert the "Stop" string
+    # value inside the
+    # statusField entry box
+    statusField.insert(0,"Stop")
+ 
+ 
+# Define a function for 
+# reset the counter 
+def reset() :
+ 
+    # we specify that we want to 
+    # use global counter variable
+    # using global keyword
+    global counter
+ 
+    # set counter value to 0
+    counter = 0
+ 
+    # Create a label using Label() widget
+    # with foreground, background
+    # colours and text value on the label
+    counterLabel = Label(window, text = str(counter),
+                   fg = 'black', bg = 'green')
+ 
+ 
+    # Place this widget in grid at (2, 2)
+    # along with specified padding
+    counterLabel.grid(row = 2, column = 2,
+                    ipadx = "25", ipady = "25",
+                    padx = "25", pady = "25")
+ 
+ 
+# Main code
+if __name__ == "__main__" :
+     
+    # Create a window container
+    window = Tk()
+    
+    # Set background colour of window 
+    # container using configure() method 
+    # with background attribute
+    window.configure(background = 'CYAN')
+    
+    # Set the configuration of window
+    # container using geometry() method
+    # width X length
+    window.geometry("300x200")
+ 
+    # Set the title of window container
+    # using title() method
+    window.title("Counter APP -Thecodecompiler")
+     
+    # Create a label using Label() widget
+    counterLabel = Label(window, text = str(counter),
+                   fg = 'black', bg = 'light green')
+ 
+    # Placing the widgets at respective
+    # positions in table like structure
+    # using grid() method
+     
+    # Place this widget in grid at (2, 2)
+    counterLabel.grid(row = 2, column = 2,
+                    ipadx = "25", ipady = "25",
+                    padx = "25", pady = "25")
+ 
+    # Create a Button and attached 
+    # function using Button() widget
+    startButton = Button(window, text = "Start",
+                    bg = "red", fg = "black",
+                    command = start)
+ 
+    # Place button widget in grid at (3, 1)
+    startButton.grid(row = 3, column = 1,
+                     padx = "25", ipadx = "10")
+ 
+    # Create a Button and attached 
+    # function using Button() widget
+    stopButton = Button(window, text = "Stop",
+                    bg = "red", fg = "black",
+                    command = stop)
+ 
+    # Place button widget in grid at (3, 2)
+    stopButton.grid(row = 3, column = 2,
+                    ipadx = "10")
+ 
+    # Create a Button and attached 
+    # function using Button() widget
+    resetButton = Button(window, text = "Reset",
+                    bg = "red", fg = "black",
+                    command = reset)
+ 
+    # Place button widget in grid at (3, 3)
+    resetButton.grid(row = 3, column = 3,
+                     ipadx = "10")
+ 
+    # we will not attach this widget to the window
+    # because we don't want to place it
+    # this is used for only stoping and starting
+    # the counter as a flag
+     
+    # Create text entry box for : status field
+    statusField = Entry(window)
+ 
+    # Start the window,
+    # waiting for events and
+    # updating the GUI. 
+    window.mainloop()
+   
